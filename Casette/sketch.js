@@ -20,12 +20,8 @@ function draw() {
   rect(150,200,100,100);
   fill("#03A9F4");
   rect(280,200,100,100);
-  let xtetto=10
-  let ytetto=10
-  for (let numero_tetti=0; numero_tetti<4;){
-    fill("#B2180C");
-    triangle(xtetto,ytetto);
-  }
   fill("#B2180C");
   triangle(20,200,120,200,70,130);
+  triangle(150,200,250,200,200,130);
+  triangle(280,200,380,200,330,130);
 }
