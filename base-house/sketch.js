@@ -9,8 +9,8 @@ function setup() {
   slider = createSlider(0,255,0,1);
   slider.position(0,canvasYMax-60);
   slider.size(200);
-
 }
+
 function draw() {
   background("navy");
   frameRate(20);
