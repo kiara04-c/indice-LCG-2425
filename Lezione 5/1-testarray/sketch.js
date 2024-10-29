@@ -1,4 +1,3 @@
-
 let num = 23;
 let num2 = 24;
 let arrayNum = [23, 100, 20, 77, 15, 11, 27];
