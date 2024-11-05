@@ -8,6 +8,13 @@ let riversData;
 let arrayOfNames = [];
 let lunghezze =[];
 
+//collegamento tra lunghezze e nomi
+//--> objectd <key, value>
+//posso aggiungere tutte le proprietà che voglio
+//legame univoco
+let objectsTest={name: "pippo", length: 10};
+let arrayObjects = [];
+
 
 function preload(){
   riversData = loadTable("../assets/rivers-data-reduced.csv");
@@ -25,7 +32,15 @@ function setup(){
     lunghezze.push(Number(riversData.get(r,3)));
     //creare oggetto che imponga il vincolo nome, lunghezza
     //collegamento tra nome e lunghezza
+    let tmp={name:riversData.get(r,1), length:riversData.get(r,3)};
+    arrayObjects.push(tmp);
+    //0-->nome, lunghezza di riga 1
+    //1-->nome, lunghezza di riga 2
   }
+  //array può essere ordinato con sort
+  lunghezze.sort();
+  //array-->collezione di oggetti
+  arrayObjects.sort((a,b) => b.length - a.length);
   noLoop();
   // //per scorrere nell'interezza la tabella
   // for(let r=0; riversData.getRowCount(); r++){
@@ -42,9 +57,9 @@ function setup(){
 function draw() {
   background(220);
   textSize(50);
-  text("Rows "+riversData.getRowCount(),20,420);
-  text("Cols "+riversData.getColumnCount(),20,470);
-  text(riversData.get(0,3),20,550);
+  //text("Rows "+riversData.getRowCount(),20,420);
+  //text("Cols "+riversData.getColumnCount(),20,470);
+  //text(riversData.get(0,3),20,550);
   textSize(10);
   //asse x e asse y
   stroke(155);
@@ -79,18 +94,25 @@ function draw() {
   //mostrarle sul grafico
   strokeWeight(10);
   stroke(0);
-  for(let i=0; i<lunghezze.length ; i++){
+  for(let i=0; i<arrayObjects.length ; i++){
     //map --> valore, intervallo iniziale,
     // intervallo di destinazione
     //intervallo iniziale (0, lunghezze.length)
     //intervallo destinazione (xMin, xMax)
-    let x = map(i,0, lunghezze.length, xMin+5, xMax);
+    let x = map(i,0, arrayObjects.length, xMin+5, xMax);
     //intervallo di inizio 
     //intervallo di destinazione
-    let y = map(lunghezze[i], min(lunghezze), max(lunghezze),yMax, yMin);
+    let y = map(arrayObjects[i].length, min(lunghezze), max(lunghezze),yMax, yMin);
     // noStroke();
     // text(y,x,x);
     // strokeWeight(5);
+    push();
+    translate(x-5,y+22);
+    rotate(-30);
+    strokeWeight(1);
+    textSize(15);
+    text(arrayObjects[i].name, 0, 0);
+    pop();
     strokeWeight(10);
     point(x,y);
   }
