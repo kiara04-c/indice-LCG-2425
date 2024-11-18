@@ -8,7 +8,7 @@ let game_status = "Playing";
 
 function setup() {
   createCanvas(400, 400);
-  frameRate(10);
+  frameRate(7);
   s = new Snake(0, 0);
   pickFoodLocation();
   button = createButton("Restar");
